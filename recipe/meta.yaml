@@ -1,6 +1,6 @@
 {% set name = "typer" %}
-{% set version = "0.2.1" %}
-{% set sha256 = "a8c49418f20c1d1b04a34424dded86cebf1f87042a8e448c6faa63cf38b9c0af" %}
+{% set version = "0.3.0" %}
+{% set sha256 = "f025d6bbb2fcefaf861dec5a006e9b5128532f733b7f75b57b1fd803bed31cdd" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +13,7 @@ source:
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
