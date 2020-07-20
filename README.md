@@ -5,7 +5,7 @@ Home: https://github.com/tiangolo/typer
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A library for building CLI applications 
 
