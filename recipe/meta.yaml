@@ -1,6 +1,6 @@
 {% set name = "typer" %}
-{% set version = "0.3.1" %}
-{% set sha256 = "85b1e5f6369750b4220ad548ea30b881a2c502504e5a0d849db9bdf6b487bdbf" %}
+{% set version = "0.3.2" %}
+{% set sha256 = "5455d750122cff96745b0dec87368f56d023725a7ebc9d2e54dd23dc86816303" %}
 
 package:
   name: {{ name|lower }}
