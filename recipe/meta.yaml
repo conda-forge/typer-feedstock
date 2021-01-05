@@ -1,41 +1,44 @@
 {% set name = "typer" %}
-{% set version = "0.3.1" %}
-{% set sha256 = "85b1e5f6369750b4220ad548ea30b881a2c502504e5a0d849db9bdf6b487bdbf" %}
+{% set version = "0.3.2" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 5455d750122cff96745b0dec87368f56d023725a7ebc9d2e54dd23dc86816303
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
     - python >=3.6
     - pip
-    - flit-core
+    - flit-core >=2,<3
   run:
     - python >=3.6
-    - click
-    - colorama
-    - shellingham
+    - click >=7.1.1,<7.2.0
+    - colorama >=0.4.3,<0.5.0
+    - shellingham >=1.3.0,<2.0.0
 
 test:
   imports:
     - typer
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/tiangolo/typer
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'A library for building CLI applications '
+  summary: A library for building CLI applications
 
   description: |
     Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
@@ -48,9 +51,10 @@ about:
     Start simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.
     Grow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.
 
-  doc_url: https://typer.tiangolo.com/
+  doc_url: https://typer.tiangolo.com
   dev_url: https://github.com/tiangolo/typer
 
 extra:
   recipe-maintainers:
     - dfornika
+    - bollwyvl

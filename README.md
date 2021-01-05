@@ -5,9 +5,13 @@ Home: https://github.com/tiangolo/typer
 
 Package license: MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/typer-feedstock/blob/master/LICENSE.txt)
 
-Summary: A library for building CLI applications 
+Summary: A library for building CLI applications
+
+Development: https://github.com/tiangolo/typer
+
+Documentation: https://typer.tiangolo.com
 
 Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
 
@@ -125,5 +129,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@bollwyvl](https://github.com/bollwyvl/)
 * [@dfornika](https://github.com/dfornika/)
 
