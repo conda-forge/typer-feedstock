@@ -36,7 +36,7 @@ test:
     - pytest-sugar
   commands:
     - pip check
-    - pytest tests -vv --cov typer --cov-report term-missing:skip-covered --no-cov-on-fail -k "not (multiple_values and main)" --cov-fail-under 75
+    - pytest tests -vv --cov typer --cov-report term-missing:skip-covered --no-cov-on-fail -k "not ((multiple_values and main) or completion_source_bash)" --cov-fail-under 75
 
 about:
   home: https://github.com/tiangolo/typer
