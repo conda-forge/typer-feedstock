@@ -1,4 +1,4 @@
-{% set version = "0.4.2" %}
+{% set version = "0.5.0" %}
 
 package:
   name: typer
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-  sha256: b8261c6c0152dd73478b5ba96ba677e5d6948c715c310f7c91079f311f62ec03
+  sha256: 4c285a5585c94d32c305444af934f0078b6a8ba91464f3f85807c91cd499d195
 
 build:
   noarch: python
@@ -22,6 +22,7 @@ requirements:
     - click >=7.1.1,<9
     - colorama >=0.4.3,<0.5.0
     - python >=3.6
+    - rich >=10.11.0,<13.0.0
     - shellingham >=1.3.0,<2.0.0
 
 test:
@@ -36,7 +37,7 @@ test:
     - pytest-sugar
   commands:
     - pip check
-    - pytest tests -vv --cov typer --cov-report term-missing:skip-covered --no-cov-on-fail -k "not ((multiple_values and main) or completion_source_bash)" --cov-fail-under 75
+    - pytest tests -vv --cov typer --cov-report term-missing:skip-covered --no-cov-on-fail -k "not ((multiple_values and main) or completion_source_bash)" --cov-fail-under 74
 
 about:
   home: https://github.com/tiangolo/typer
