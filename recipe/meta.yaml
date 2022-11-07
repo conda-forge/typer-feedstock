@@ -1,4 +1,4 @@
-{% set version = "0.6.1" %}
+{% set version = "0.7.0" %}
 
 package:
   name: typer
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-  sha256: 2d5720a5e63f73eaf31edaa15f6ab87f35f0690f8ca233017d7d23d743a91d73
+  sha256: ff797846578a9f2a201b53442aedeb543319466870fbe1c701eab66dd7681165
 
 build:
   noarch: python
