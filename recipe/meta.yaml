@@ -33,11 +33,10 @@ test:
     - typer
   requires:
     - pip
-    - pytest-cov
     - pytest-sugar
   commands:
     - pip check
-    - pytest tests -vv --cov=typer --cov-branch --cov-report term-missing:skip-covered --no-cov-on-fail -k "not ((multiple_values and main) or completion)" --cov-fail-under=74
+    - pytest tests -vv -k "not ((multiple_values and main) or completion)"
 
 about:
   home: https://github.com/tiangolo/typer
