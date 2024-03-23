@@ -161,6 +161,3 @@ Feedstock Maintainers
 * [@bollwyvl](https://github.com/bollwyvl/)
 * [@dfornika](https://github.com/dfornika/)
 
-
-<!-- dummy commit to enable rerendering -->
-
