@@ -1,35 +1,40 @@
 {% set version = "0.11.0" %}
+{% set min_python = "python >=3.8" %}
 
 package:
   name: typer
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-  sha256: a6ce173c0f03d3a41b49c0a945874cc489e91f88faabf76517b2b91c670fcde7
+  - folder: dist
+    url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
+    sha256: a6ce173c0f03d3a41b49c0a945874cc489e91f88faabf76517b2b91c670fcde7
+  - folder: src
+    url: https://github.com/tiangolo/typer/archive/refs/tags/{{ version }}.tar.gz
+    sha256: 02f9e0ae49a58bd2e92ae0017f2820f7ef75cabd2527e42a9d811dd37a4f9f5b
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - flit-core >=2,<3
+    - {{ min_python }}
+    - pdm-backend
     - pip
-    - python >=3.6
   run:
-    - click >=7.1.1,<9
+    - {{ min_python }}
+    - click >=8.0.0
     - colorama >=0.4.3,<0.5.0
-    - python >=3.6
     - rich >=10.11.0,<14.0.0
     - shellingham >=1.3.0,<2.0.0
     - typing-extensions >=3.7.4.3
 
 test:
   source_files:
-    - docs_src
-    - tests
+    - src/tests
+    - src/docs_src
   imports:
     - typer
   requires:
@@ -38,15 +43,16 @@ test:
     - pytest-sugar
   commands:
     - pip check
-    - pytest tests -vv -k "not ((multiple_values and main) or completion)"
+    - cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
+    - coverage report --show-missing --skip-covered --fail-under=74
 
 about:
   home: https://github.com/tiangolo/typer
   license: MIT
   license_family: MIT
-  license_file: LICENSE
+  license_file: dist/LICENSE
   summary: A library for building CLI applications
-
+  doc_url: https://typer.tiangolo.com
   description: |
     Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
 
@@ -57,9 +63,6 @@ about:
     Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
     Start simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.
     Grow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.
-
-  doc_url: https://typer.tiangolo.com
-  dev_url: https://github.com/tiangolo/typer
 
 extra:
   recipe-maintainers:
