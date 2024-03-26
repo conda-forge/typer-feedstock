@@ -9,8 +9,6 @@ Package license: MIT
 
 Summary: A library for building CLI applications
 
-Development: https://github.com/tiangolo/typer
-
 Documentation: https://typer.tiangolo.com
 
 Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
