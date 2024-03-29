@@ -1,4 +1,3 @@
-{% set min_python = "python >=3.8" %}
 {% set version = "0.11.1" %}
 {% set min_python = "python >=3.8" %}
 
