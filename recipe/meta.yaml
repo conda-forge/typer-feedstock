@@ -1,4 +1,5 @@
-{% set version = "0.11.1" %}
+{% set min_python = "python >=3.8" %}
+{% set version = "0.12.0" %}
 {% set min_python = "python >=3.8" %}
 
 package:
@@ -8,10 +9,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-    sha256: f5ae987b97ebbbd59182f8e84407bbc925bc636867fa007bce87a7a71ac81d5c
+    sha256: 900fe786ce2d0ea44653d3c8ee4594a22a496a3104370ded770c992c5e3c542d
   - folder: src
     url: https://github.com/tiangolo/typer/archive/refs/tags/{{ version }}.tar.gz
-    sha256: ab98bf9140ff8ffb91b3055d3a214c005e86410c44b0195123c33654db527f99
+    sha256: 04e1914b981da512e22a6c4021df877a54b95bf123fa2af4cbdb25950c2b72d5
 
 build:
   noarch: python
