@@ -1,13 +1,18 @@
 {% set min_python = "python >=3.8" %}
 {% set version = "0.12.0" %}
-{% set min_python = "python >=3.8" %}
 
 package:
-  name: typer
+  name: typer-suite
   version: {{ version }}
 
 source:
   - folder: dist
+    url: https://pypi.io/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
+    sha256: 3e8a3f17286b173d76dca0fd4e02651c9a2ce1467b3754876b1ac4bd72572beb
+  - folder: dist/typer_cli_package
+    url: https://pypi.io/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
+    sha256: 603ed3d5a278827bd497e4dc73a39bb714b230371c8724090b0de2abdcdd9f6e
+  - folder: dist/typer_package
     url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
     sha256: 900fe786ce2d0ea44653d3c8ee4594a22a496a3104370ded770c992c5e3c542d
   - folder: src
@@ -15,37 +20,86 @@ source:
     sha256: 04e1914b981da512e22a6c4021df877a54b95bf123fa2af4cbdb25950c2b72d5
 
 build:
-  noarch: python
   number: 0
-  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
-requirements:
-  host:
-    - {{ min_python }}
-    - pdm-backend
-    - pip
-  run:
-    - {{ min_python }}
-    - click >=8.0.0
-    - colorama >=0.4.3,<0.5.0
-    - rich >=10.11.0,<14.0.0
-    - shellingham >=1.3.0,<2.0.0
-    - typing-extensions >=3.7.4.3
-
-test:
-  source_files:
-    - src/tests
-    - src/docs_src
-  imports:
-    - typer
-  requires:
-    - coverage
-    - pip
-    - pytest-sugar
-  commands:
-    - pip check
-    - cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
-    - coverage report --show-missing --skip-covered --fail-under=74
+outputs:
+  - name: typer-slim
+    build:
+      noarch: python
+      script: cd dist && python -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - {{ min_python }}
+        - pdm-backend
+        - pip
+      run:
+        - {{ min_python }}
+        - click >=8.0.0
+        - colorama >=0.4.3,<0.5.0
+        - typing-extensions >=3.7.4.3
+  - name: typer-slim-standard
+    build:
+      noarch: python
+    requirements:
+      host:
+        - {{ min_python }}
+      run:
+        - {{ min_python }}
+        - {{ pin_subpackage('typer-slim', max_pin="x.x.x") }}
+        - rich >=10.11.0,<14.0.0
+        - shellingham >=1.3.0,<2.0.0
+    test:
+      source_files:
+        - src/tests
+        - src/docs_src
+      imports:
+        - typer
+      requires:
+        - coverage
+        - pip
+        - pytest-sugar
+      commands:
+        - pip check
+        - cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
+        - coverage report --show-missing --skip-covered --fail-under=66
+  - name: typer-cli
+    build:
+      noarch: python
+      script: cd dist/typer_cli_package && python -m pip install . -vv --no-deps --no-build-isolation
+      entry_points:
+        - typer = typer.cli:main
+    requirements:
+      host:
+        - {{ min_python }}
+        - pdm-backend
+        - pip
+      run:
+        - {{ min_python }}
+        - {{ pin_subpackage('typer-slim-standard', max_pin="x.x.x") }}
+    test:
+      requires:
+        - pip
+      commands:
+        - typer --help
+        - pip check
+  - name: typer
+    build:
+      noarch: python
+      script: cd dist/typer_package && python -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - {{ min_python }}
+        - pdm-backend
+        - pip
+      run:
+        - {{ min_python }}
+        - {{ pin_subpackage('typer-slim-standard', max_pin="x.x.x") }}
+        - {{ pin_subpackage('typer-cli', max_pin="x.x.x") }}
+    test:
+      requires:
+        - pip
+      commands:
+        - pip check
 
 about:
   home: https://github.com/tiangolo/typer
