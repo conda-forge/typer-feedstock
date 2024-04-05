@@ -1,100 +1,127 @@
-{% set min_python = "python >=3.8" %}
 {% set version = "0.12.1" %}
+{% set min_python = "python >=3.7" %}
+
+# handle undefined PYTHON in `noarch: generic` outputs
+{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
+
 
 package:
-  name: typer-suite
+  name: typer-split
   version: {{ version }}
 
 source:
-  - folder: dist
+  - folder: typer-slim
     url: https://pypi.io/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
     sha256: a1d74b0ffad59a42fc06bc9e9661402267f0e1c072f5ac8b751392e6a24ff37c
-  - folder: dist/typer_cli_package
+  - folder: typer-cli
     url: https://pypi.io/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
     sha256: 2576e55d3418b07843cfefae1f3c65a9e47156d34abeccc6c2039691bd5286c6
-  - folder: dist/typer_package
+    patches:
+      - 0000-typer-cli-no-entry-point.patch
+  - folder: typer
     url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
     sha256: 72d218ef3c686aed9c6ff3ca25b238aee0474a1628b29c559b18b634cfdeca88
-  - folder: src
-    url: https://github.com/tiangolo/typer/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 043b6ed2972aed30f9e38f78c175b49939ffb2cb09334c7c4a1f19c3bdd72490
 
 build:
   number: 0
+  noarch: python
 
 outputs:
+  # packages with source are `noarch: python`, and should use `{{ min_python }}` in `host` and `run``
   - name: typer-slim
     build:
       noarch: python
-      script: cd dist && python -m pip install . -vv --no-deps --no-build-isolation
+      script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py
     requirements:
       host:
         - {{ min_python }}
         - pdm-backend
         - pip
+        - python-build
       run:
         - {{ min_python }}
         - click >=8.0.0
-        - typing-extensions >=3.7.4.3
-  - name: typer-slim-standard
-    build:
-      noarch: python
-    requirements:
-      host:
-        - {{ min_python }}
-      run:
-        - {{ min_python }}
-        - {{ pin_subpackage('typer-slim', max_pin="x.x.x") }}
+        - typing_extensions >=3.7.4.3
+      run_constrained:
+        # avoid clobbering historic `typer` versions
+        - {{ pin_subpackage("typer", exact=True) }}
+        # see typer-slim-standard `run` for concrete pinss
         - rich >=10.11.0,<14.0.0
         - shellingham >=1.3.0,<2.0.0
     test:
-      source_files:
-        - src/tests
-        - src/docs_src
-      imports:
-        - typer
       requires:
-        - coverage
         - pip
-        - pytest-sugar
       commands:
         - pip check
-        - cd src && coverage run --source typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
-        - coverage report --show-missing --skip-covered --fail-under=66
+
   - name: typer-cli
     build:
       noarch: python
-      script: cd dist/typer_cli_package && python -m pip install . -vv --no-deps --no-build-isolation
+      script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py
+    requirements:
+      host:
+        - {{ min_python }}
+        - pdm-backend
+        - pip
+        - python-build
+      run:
+        - {{ min_python }}
+        - {{ pin_subpackage("typer", exact=True) }}
+    test:
+      requires:
+        - pip
+      commands:
+        - pip check
+        - typer --version
+        - typer --help
+
+  - name: typer
+    build:
+      noarch: python
+      script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py
       entry_points:
+        # won't actually run, but needs to be here to get proper wrapper generated
         - typer = typer.cli:main
     requirements:
       host:
         - {{ min_python }}
         - pdm-backend
         - pip
+        - python-build
       run:
         - {{ min_python }}
-        - {{ pin_subpackage('typer-slim-standard', max_pin="x.x.x") }}
+        - {{ pin_subpackage("typer-slim-standard", exact=True) }}
     test:
+      source_files:
+        - typer/tests
+        - typer/docs_src
       requires:
         - pip
+        - pytest
+        - coverage
       commands:
-        - typer --help
         - pip check
-  - name: typer
+        - typer --version
+        - typer --help
+        - cd typer && coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
+        - coverage report --show-missing --skip-covered --fail-under=66
+
+  # dep-only packages are `noarch: generic`, with no `host`
+  - name: typer-slim-standard
     build:
-      noarch: python
-      script: cd dist/typer_package && python -m pip install . -vv --no-deps --no-build-isolation
+      noarch: generic
     requirements:
-      host:
-        - {{ min_python }}
-        - pdm-backend
-        - pip
       run:
-        - {{ min_python }}
-        - {{ pin_subpackage('typer-slim-standard', max_pin="x.x.x") }}
-        - {{ pin_subpackage('typer-cli', max_pin="x.x.x") }}
+        - {{ pin_subpackage("typer-slim", exact=True) }}
+        # see `typer-slim` for pins in `run_constrained`
+        - rich
+        - shellingham
     test:
+      source_files:
+        - typer-slim/tests
+        - typer-slim/docs_src
+      imports:
+        - typer
       requires:
         - pip
       commands:
@@ -104,21 +131,12 @@ about:
   home: https://github.com/tiangolo/typer
   license: MIT
   license_family: MIT
-  license_file: dist/LICENSE
-  summary: A library for building CLI applications
+  license_file: typer-slim/LICENSE
+  summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
   doc_url: https://typer.tiangolo.com
-  description: |
-    Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
-
-    The key features are:
-
-    Intuitive to write: Great editor support. Completion everywhere. Less time debugging. Designed to be easy to use and learn. Less time reading docs.
-    Easy to use: It's easy to use for the final users. Automatic help, and automatic completion for all shells.
-    Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-    Start simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.
-    Grow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.
 
 extra:
+  feedstock-name: typer
   recipe-maintainers:
     - dfornika
     - bollwyvl
