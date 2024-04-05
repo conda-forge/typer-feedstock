@@ -1,5 +1,5 @@
-About typer-suite-feedstock
-===========================
+About typer-feedstock
+=====================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/typer-feedstock/blob/main/LICENSE.txt)
 
@@ -7,20 +7,9 @@ Home: https://github.com/tiangolo/typer
 
 Package license: MIT
 
-Summary: A library for building CLI applications
+Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
 
 Documentation: https://typer.tiangolo.com
-
-Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
-
-The key features are:
-
-Intuitive to write: Great editor support. Completion everywhere. Less time debugging. Designed to be easy to use and learn. Less time reading docs.
-Easy to use: It's easy to use for the final users. Automatic help, and automatic completion for all shells.
-Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-Start simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.
-Grow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.
-
 
 Current build status
 ====================
@@ -45,10 +34,10 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-typer--slim-green.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-typer--slim--standard-green.svg)](https://anaconda.org/conda-forge/typer-slim-standard) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-slim-standard.svg)](https://anaconda.org/conda-forge/typer-slim-standard) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-slim-standard.svg)](https://anaconda.org/conda-forge/typer-slim-standard) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-slim-standard.svg)](https://anaconda.org/conda-forge/typer-slim-standard) |
 
-Installing typer-suite
-======================
+Installing typer
+================
 
-Installing `typer-suite` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `typer` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
@@ -134,17 +123,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating typer-suite-feedstock
-==============================
+Updating typer-feedstock
+========================
 
-If you would like to improve the typer-suite recipe or build a new
+If you would like to improve the typer recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/typer-suite-feedstock are
+Note that all branches in the conda-forge/typer-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
