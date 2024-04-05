@@ -1,5 +1,5 @@
 {% set min_python = "python >=3.8" %}
-{% set version = "0.12.0" %}
+{% set version = "0.12.1" %}
 
 package:
   name: typer-suite
@@ -8,16 +8,16 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
-    sha256: 3e8a3f17286b173d76dca0fd4e02651c9a2ce1467b3754876b1ac4bd72572beb
+    sha256: a1d74b0ffad59a42fc06bc9e9661402267f0e1c072f5ac8b751392e6a24ff37c
   - folder: dist/typer_cli_package
     url: https://pypi.io/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
-    sha256: 603ed3d5a278827bd497e4dc73a39bb714b230371c8724090b0de2abdcdd9f6e
+    sha256: 2576e55d3418b07843cfefae1f3c65a9e47156d34abeccc6c2039691bd5286c6
   - folder: dist/typer_package
     url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-    sha256: 900fe786ce2d0ea44653d3c8ee4594a22a496a3104370ded770c992c5e3c542d
+    sha256: 72d218ef3c686aed9c6ff3ca25b238aee0474a1628b29c559b18b634cfdeca88
   - folder: src
     url: https://github.com/tiangolo/typer/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 04e1914b981da512e22a6c4021df877a54b95bf123fa2af4cbdb25950c2b72d5
+    sha256: 043b6ed2972aed30f9e38f78c175b49939ffb2cb09334c7c4a1f19c3bdd72490
 
 build:
   number: 0
