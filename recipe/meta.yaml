@@ -36,11 +36,6 @@ outputs:
         - {{ min_python }}
         - click >=8.0.0
         - typing-extensions >=3.7.4.3
-    test:
-      requires:
-        - pip
-      commands:
-        - pip check
   - name: typer-slim-standard
     build:
       noarch: python
