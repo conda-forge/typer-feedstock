@@ -7,20 +7,9 @@ Home: https://github.com/tiangolo/typer
 
 Package license: MIT
 
-Summary: A library for building CLI applications
+Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
 
 Documentation: https://typer.tiangolo.com
-
-Typer is library for building CLI applications that users will love using and developers will love creating. Based on Python 3.6+ type hints.
-
-The key features are:
-
-Intuitive to write: Great editor support. Completion everywhere. Less time debugging. Designed to be easy to use and learn. Less time reading docs.
-Easy to use: It's easy to use for the final users. Automatic help, and automatic completion for all shells.
-Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-Start simple: The simplest example adds only 2 lines of code to your app: 1 import, 1 function call.
-Grow large: Grow in complexity as much as you want, create arbitrarily complex trees of commands and groups of subcommands, with options and arguments.
-
 
 Current build status
 ====================
@@ -41,6 +30,9 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-typer-green.svg)](https://anaconda.org/conda-forge/typer) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer.svg)](https://anaconda.org/conda-forge/typer) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer.svg)](https://anaconda.org/conda-forge/typer) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer.svg)](https://anaconda.org/conda-forge/typer) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-typer--cli-green.svg)](https://anaconda.org/conda-forge/typer-cli) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-cli.svg)](https://anaconda.org/conda-forge/typer-cli) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-cli.svg)](https://anaconda.org/conda-forge/typer-cli) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-cli.svg)](https://anaconda.org/conda-forge/typer-cli) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-typer--slim-green.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-typer--slim--standard-green.svg)](https://anaconda.org/conda-forge/typer-slim-standard) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-slim-standard.svg)](https://anaconda.org/conda-forge/typer-slim-standard) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-slim-standard.svg)](https://anaconda.org/conda-forge/typer-slim-standard) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-slim-standard.svg)](https://anaconda.org/conda-forge/typer-slim-standard) |
 
 Installing typer
 ================
@@ -52,16 +44,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `typer` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `typer, typer-cli, typer-slim, typer-slim-standard` can be installed with `conda`:
 
 ```
-conda install typer
+conda install typer typer-cli typer-slim typer-slim-standard
 ```
 
 or with `mamba`:
 
 ```
-mamba install typer
+mamba install typer typer-cli typer-slim typer-slim-standard
 ```
 
 It is possible to list all of the versions of `typer` available on your platform with `conda`:
@@ -158,4 +150,5 @@ Feedstock Maintainers
 
 * [@bollwyvl](https://github.com/bollwyvl/)
 * [@dfornika](https://github.com/dfornika/)
+* [@fcollonval](https://github.com/fcollonval/)
 

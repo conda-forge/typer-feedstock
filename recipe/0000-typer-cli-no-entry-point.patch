@@ -1,0 +1,16 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 34f04dd..18bf0ad 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -79,8 +79,9 @@ include-optional-dependencies = [
+ 
+ [tool.tiangolo._internal-slim-build.packages.typer.project.optional-dependencies]
+ 
+-[tool.tiangolo._internal-slim-build.packages.typer.project.scripts]
+-typer = "typer.cli:main"
++### [conda-forge] patch this out to avoid ClobberWarning
++# [tool.tiangolo._internal-slim-build.packages.typer.project.scripts]
++# typer = "typer.cli:main"
+ 
+ [tool.tiangolo._internal-slim-build.packages.typer-cli.project]
+ name = "typer-cli"
