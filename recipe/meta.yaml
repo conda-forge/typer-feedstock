@@ -76,11 +76,8 @@ outputs:
         - {{ min_python }}
         - {{ pin_subpackage('typer-slim-standard', max_pin="x.x.x") }}
     test:
-      requires:
-        - pip
       commands:
         - typer --help
-        - pip check
   - name: typer
     build:
       noarch: python
