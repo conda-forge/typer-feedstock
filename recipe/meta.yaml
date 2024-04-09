@@ -1,5 +1,6 @@
 {% set min_python = "python >=3.7" %}
-{% set version = "0.12.2" %}
+{% set min_python = "python >=3.7" %}
+{% set version = "0.12.3" %}
 {% set min_python = "python >=3.7" %}
 
 # handle undefined PYTHON in `noarch: generic` outputs
@@ -13,15 +14,15 @@ package:
 source:
   - folder: typer-slim
     url: https://pypi.io/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
-    sha256: f0167512f306a1002b393b14949adb0f65645f1fb5fcbeea600081e7f0a7d6d4
+    sha256: 633965eb413074aa6c47549d1820832f229709e9a59857a4f57ee82b655602af
   - folder: typer-cli
     url: https://pypi.io/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
-    sha256: 85f04776b21e68ecb35684c162f2bd33833f4c607f572f76ea875dc14ebb26fb
+    sha256: 1f66684489ea15b08f613d76948c4f99d6b69c69de47010bbc0032d9de4d45b5
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - folder: typer
     url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-    sha256: 977929604fde12aeada011852ad9c64370501be6ac2eac248f3161cdc9eeb7c9
+    sha256: 49e73131481d804288ef62598d97a1ceef3058905aa536a1134f90891ba35482
 
 build:
   number: 0
