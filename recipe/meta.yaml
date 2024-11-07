@@ -1,8 +1,8 @@
-{% set version = "0.12.5" %}
-{% set min_python = "python >=3.7" %}
+{% set version = "0.13.0" %}
 
-# handle undefined PYTHON in `noarch: generic` outputs
-{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
+# handle magic python variables
+{% set python_min = python_min | default("3.9") %}
+{% set PYTHON = PYTHON | default("$PYTHON") %}
 
 
 package:
@@ -11,16 +11,16 @@ package:
 
 source:
   - folder: typer-slim
-    url: https://pypi.io/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
-    sha256: c8e3fcf93cc7dd584036df8755d2e2363f85f8a4dd028c7911eed3f00cf0ebb1
+    url: https://pypi.org/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
+    sha256: 7d7d3b0ad211ddcc9bcfe3d51e7d5903b0f10ae07938cca33f8af1f578c5007b
   - folder: typer-cli
-    url: https://pypi.io/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
-    sha256: ecb6fbce0d43ce6f6318328a1ab708ac967196847bf98741627f757e7b88db63
+    url: https://pypi.org/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
+    sha256: 9935e5ffdbbd7c435f5d61dcb0e303fe8c81ef0c69968999a26d333456af3ba6
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - folder: typer
-    url: https://pypi.io/packages/source/t/typer/typer-{{ version }}.tar.gz
-    sha256: f592f089bedcc8ec1b974125d64851029c3b1af145f04aca64d69410f0c9b722
+    url: https://pypi.org/packages/source/t/typer/typer-{{ version }}.tar.gz
+    sha256: f1c7198347939361eec90139ffa0fd8b3df3a2259d5852a0f7400e476d95985c
 
 build:
   number: 0
@@ -34,12 +34,12 @@ outputs:
       script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py
     requirements:
       host:
-        - {{ min_python }}
+        - python {{ python_min }}.*
         - pdm-backend
         - pip
         - python-build
       run:
-        - {{ min_python }}
+        - python >={{ python_min }}
         - click >=8.0.0
         - typing_extensions >=3.7.4.3
       run_constrained:
@@ -51,6 +51,7 @@ outputs:
     test:
       requires:
         - pip
+        - python {{ python_min }}.*
       commands:
         - pip check
 
@@ -60,16 +61,17 @@ outputs:
       script: {{ PYTHON }} {{ RECIPE_DIR }}/build_typer.py
     requirements:
       host:
-        - {{ min_python }}
+        - python {{ python_min }}.*
         - pdm-backend
         - pip
         - python-build
       run:
-        - {{ min_python }}
+        - python >={{ python_min }}
         - {{ pin_subpackage("typer", exact=True) }}
     test:
       requires:
         - pip
+        - python {{ python_min }}.*
       commands:
         - pip check
         - typer --version
@@ -84,12 +86,12 @@ outputs:
         - typer = typer.cli:main
     requirements:
       host:
-        - {{ min_python }}
+        - python {{ python_min }}.*
         - pdm-backend
         - pip
         - python-build
       run:
-        - {{ min_python }}
+        - python >={{ python_min }}
         - {{ pin_subpackage("typer-slim-standard", exact=True) }}
     test:
       source_files:
