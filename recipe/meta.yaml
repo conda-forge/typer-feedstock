@@ -1,4 +1,4 @@
-{% set version = "0.15.0" %}
+{% set version = "0.15.1" %}
 
 # handle magic python variables
 {% set python_min = python_min | default("3.9") %}
@@ -12,15 +12,15 @@ package:
 source:
   - folder: typer-slim
     url: https://pypi.org/packages/source/t/typer-slim/typer_slim-{{ version }}.tar.gz
-    sha256: 405f7553330ef5a2b90aee39ccab8e19269a9c64f93c38da3c864dbf09f65dde
+    sha256: b8ce8fd2a3c7d52f0d0c1318776e7f2bf897fa203daf899f3863514aa926c725
   - folder: typer-cli
     url: https://pypi.org/packages/source/t/typer-cli/typer_cli-{{ version }}.tar.gz
-    sha256: 1e62b64754e66d7c8612fdb605b62f95f3eb462e3fcda9d717a0e7d0e767d55a
+    sha256: 9369dc29799240a061f207ec35f9800d3d7f3c8456c2a7ed374e6527cce1c6ba
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - folder: typer
     url: https://pypi.org/packages/source/t/typer/typer-{{ version }}.tar.gz
-    sha256: 8995452a598922ed8d8ad8c06ca63a218881ab601f5fa6fb0c511f7776497c7e
+    sha256: a0588c0a7fa68a1978a069818657778f86abe6ff5ea6abf472f940a08bfe4f0a
 
 build:
   number: 0
