@@ -1,0 +1,146 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 0.15.2
+
+recipe:
+  name: typer-split
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
+    sha256: 4a666bb7839a88f51dd25d078d36dbc1d0f37c8c2696e184fbc1f3eaa314a91b
+    target_directory: typer-slim
+  - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
+    sha256: d72717900ebd6e2c7ec8644edd74f2ded2d88e8cac91af6b86e42b7a97147fa8
+    target_directory: typer-cli
+    patches:
+      - 0000-typer-cli-no-entry-point.patch
+  - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
+    sha256: ab2fab47533a813c49fe1f16b1a370fd5819099c00b119e0633df65f22144ba5
+    target_directory: typer
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: typer-slim
+    build:
+      noarch: python
+      script: ${{ PYTHON }} ${{ RECIPE_DIR }}/build_typer.py
+    requirements:
+      host:
+        - pdm-backend
+        - pip
+        - python ${{ python_min }}.*
+        - python-build
+      run:
+        - python >=${{ python_min }}
+        - click >=8.0.0
+        - typing_extensions >=3.7.4.3
+      run_constraints:
+        - typer ${{ version }}.*
+        - rich >=10.11.0
+        - shellingham >=1.3.0
+    tests:
+      - python:
+          imports: typer
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+  - package:
+      name: typer-cli
+    build:
+      noarch: python
+      script: ${{ PYTHON }} ${{ RECIPE_DIR }}/build_typer.py
+    requirements:
+      host:
+        - pdm-backend
+        - pip
+        - python ${{ python_min }}.*
+        - python-build
+      run:
+        - ${{ pin_subpackage("typer", exact=True) }}
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports: typer
+          pip_check: true
+          python_version: ${{ python_min }}.*
+      - requirements:
+          run:
+            - python ${{ python_min }}.*
+        script:
+          - typer --version
+          - typer --help
+
+  - package:
+      name: typer
+    build:
+      noarch: python
+      script: ${{ PYTHON }} ${{ RECIPE_DIR }}/build_typer.py
+      python:
+        entry_points:
+          - typer = typer.cli:main
+    requirements:
+      host:
+        - pdm-backend
+        - pip
+        - python ${{ python_min }}.*
+        - python-build
+      run:
+        - ${{ pin_subpackage("typer-slim-standard", exact=True) }}
+        - python >=${{ python_min }}
+    tests:
+      - python:
+          imports: typer
+          pip_check: true
+          python_version: ${{ python_min }}.*
+      - files:
+          source:
+            - typer/tests/
+            - typer/docs_src/
+        requirements:
+          run:
+            - coverage
+            - pytest
+            - python ${{ python_min }}.*
+        script:
+          - typer --version
+          - typer --help
+          - cd typer
+          - coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
+          - coverage report --show-missing --skip-covered --fail-under=66
+
+  - package:
+      name: typer-slim-standard
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("typer-slim", exact=True) }}
+        # see `typer-slim` for pins in `run_constrained`
+        - rich
+        - shellingham
+    tests:
+      - python:
+          imports: typer
+          pip_check: true
+          python_version: ${{ python_min }}.*
+
+about:
+  license: MIT
+  license_file: typer-slim/LICENSE
+  summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
+  homepage: https://github.com/tiangolo/typer
+  documentation: https://typer.tiangolo.com
+
+extra:
+  feedstock-name: typer
+  recipe-maintainers:
+    - dfornika
+    - bollwyvl
+    - fcollonval

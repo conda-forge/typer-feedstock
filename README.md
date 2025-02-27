@@ -9,7 +9,7 @@ Package license: MIT
 
 Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
 
-Documentation: https://typer.tiangolo.com
+Documentation: https://typer.tiangolo.com/
 
 Current build status
 ====================
