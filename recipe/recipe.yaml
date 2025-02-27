@@ -101,8 +101,8 @@ outputs:
           python_version: ${{ python_min }}.*
       - files:
           source:
-            - typer/tests
-            - typer/docs_src
+            - typer/tests/
+            - typer/docs_src/
         requirements:
           run:
             - coverage
