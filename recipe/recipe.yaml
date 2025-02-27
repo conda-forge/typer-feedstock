@@ -42,7 +42,7 @@ outputs:
         - click >=8.0.0
         - typing_extensions >=3.7.4.3
       run_constraints:
-        - ${{ pin_subpackage("typer", upper_bound="x.x.x") }}
+        - typer ${{ version }}.*
         - rich >=10.11.0
         - shellingham >=1.3.0
     tests:
