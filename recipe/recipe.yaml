@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: 0.15.2
+  version: "0.15.3"
 
 recipe:
   name: typer-split
@@ -10,15 +10,15 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
-    sha256: 4a666bb7839a88f51dd25d078d36dbc1d0f37c8c2696e184fbc1f3eaa314a91b
+    sha256: c134ae789afe8957c3f5f420eed07df53621271aca192b8e497d43a29b94c878
     target_directory: typer-slim
   - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
-    sha256: d72717900ebd6e2c7ec8644edd74f2ded2d88e8cac91af6b86e42b7a97147fa8
+    sha256: 1e7420d68f7be14a1ed08c12b326ffcbd36b87e46ca8a693ab10c5615a548931
     target_directory: typer-cli
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: ab2fab47533a813c49fe1f16b1a370fd5819099c00b119e0633df65f22144ba5
+    sha256: 818873625d0569653438316567861899f7e9972f2e6e0c16dab608345ced713c
     target_directory: typer
 
 build:
