@@ -3,6 +3,7 @@ schema_version: 1
 
 context:
   version: "0.15.4"
+  python_check_max: "3.13"
 
 recipe:
   name: typer-split
@@ -39,7 +40,7 @@ outputs:
         - python-build
       run:
         - python >=${{ python_min }}
-        - click >=8.0.0
+        - click >=8.0.0,<8.2
         - typing_extensions >=3.7.4.3
       run_constraints:
         - typer ${{ version }}.*
@@ -49,7 +50,9 @@ outputs:
       - python:
           imports: typer
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
 
   - package:
       name: typer-cli
@@ -69,7 +72,9 @@ outputs:
       - python:
           imports: typer
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
       - requirements:
           run:
             - python ${{ python_min }}.*
