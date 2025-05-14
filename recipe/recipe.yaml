@@ -2,7 +2,8 @@
 schema_version: 1
 
 context:
-  version: "0.15.3"
+  version: "0.15.4"
+  python_check_max: "3.13"
 
 recipe:
   name: typer-split
@@ -10,15 +11,15 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
-    sha256: c134ae789afe8957c3f5f420eed07df53621271aca192b8e497d43a29b94c878
+    sha256: 1d9fe638da58f4bdeae891512c47ed83915f81e7a0ee062cf6c572ff38473128
     target_directory: typer-slim
   - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
-    sha256: 1e7420d68f7be14a1ed08c12b326ffcbd36b87e46ca8a693ab10c5615a548931
+    sha256: cb37a6b15b4046d35bf1d6685e249c5ce0bc039f49382aea2e6626184469f1a0
     target_directory: typer-cli
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: 818873625d0569653438316567861899f7e9972f2e6e0c16dab608345ced713c
+    sha256: 89507b104f9b6a0730354f27c39fae5b63ccd0c95b1ce1f1a6ba0cfd329997c3
     target_directory: typer
 
 build:
@@ -39,7 +40,7 @@ outputs:
         - python-build
       run:
         - python >=${{ python_min }}
-        - click >=8.0.0
+        - click >=8.0.0,<8.2
         - typing_extensions >=3.7.4.3
       run_constraints:
         - typer ${{ version }}.*
@@ -49,7 +50,9 @@ outputs:
       - python:
           imports: typer
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
 
   - package:
       name: typer-cli
@@ -69,7 +72,9 @@ outputs:
       - python:
           imports: typer
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_check_max }}.*
       - requirements:
           run:
             - python ${{ python_min }}.*
