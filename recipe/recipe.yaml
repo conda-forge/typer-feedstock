@@ -31,7 +31,9 @@ outputs:
       name: typer-slim
     build:
       noarch: python
-      script: ${{ PYTHON }} ${{ RECIPE_DIR }}/build_typer.py
+      script:
+        interpreter: python
+        file: build_typer.py
     requirements:
       host:
         - pdm-backend
@@ -58,7 +60,9 @@ outputs:
       name: typer-cli
     build:
       noarch: python
-      script: ${{ PYTHON }} ${{ RECIPE_DIR }}/build_typer.py
+      script:
+        interpreter: python
+        file: build_typer.py
     requirements:
       host:
         - pdm-backend
@@ -86,7 +90,9 @@ outputs:
       name: typer
     build:
       noarch: python
-      script: ${{ PYTHON }} ${{ RECIPE_DIR }}/build_typer.py
+      script:
+        interpreter: python
+        file: build_typer.py
       python:
         entry_points:
           - typer = typer.cli:main
