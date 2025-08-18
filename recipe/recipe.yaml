@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.16.0"
+  version: "0.16.1"
   python_check_max: "3.13"
 
 recipe:
@@ -11,15 +11,15 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
-    sha256: d6483c367f98529884a5d45a028f5d2686ae93cd9d33d518661069f382c08546
+    sha256: f34576ff16d74593d460d6400ad8e4308c3e70f55ec9f5db6bc8ee9692fcf6c9
     target_directory: typer-slim
   - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
-    sha256: 5a4a0cf439cc193a3149e46f571323419b732c73287d6b2f544379d1c570eb6d
+    sha256: 3193a0967b24bb1540d30aba70430a4dfe2f0b52cce108dde4ef9ccd518e01c1
     target_directory: typer-cli
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: af377ffaee1dbe37ae9440cb4e8f11686ea5ce4e9bae01b84ae7c63b87f1dd3b
+    sha256: d358c65a464a7a90f338e3bb7ff0c74ac081449e53884b12ba658cbd72990614
     target_directory: typer
 
 build:
