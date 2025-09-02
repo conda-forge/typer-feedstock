@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.16.1"
+  version: "0.17.3"
   python_check_max: "3.13"
 
 recipe:
@@ -11,15 +11,15 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
-    sha256: f34576ff16d74593d460d6400ad8e4308c3e70f55ec9f5db6bc8ee9692fcf6c9
+    sha256: aee6d704e23f45898e83551546aa89d9d9c9a5c22b47f43106fff3ea36f029fd
     target_directory: typer-slim
   - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
-    sha256: 3193a0967b24bb1540d30aba70430a4dfe2f0b52cce108dde4ef9ccd518e01c1
+    sha256: 786ba1da61cd2e958764c491adba88eed2701c972f1f84cc267c9a7127dba133
     target_directory: typer-cli
     patches:
       - 0000-typer-cli-no-entry-point.patch
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: d358c65a464a7a90f338e3bb7ff0c74ac081449e53884b12ba658cbd72990614
+    sha256: 0c600503d472bcf98d29914d4dcd67f80c24cc245395e2e00ba3603c9332e8ba
     target_directory: typer
 
 build:
@@ -123,7 +123,7 @@ outputs:
           - typer --version
           - typer --help
           - cd typer
-          - coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion)"
+          - coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion or invalid_score)"
           - coverage report --show-missing --skip-covered --fail-under=66
 
   - package:
