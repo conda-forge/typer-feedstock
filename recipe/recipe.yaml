@@ -23,7 +23,7 @@ source:
     target_directory: typer
 
 build:
-  number: 0
+  number: 1
   noarch: python
 
 outputs:
@@ -148,6 +148,7 @@ about:
   summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
   homepage: https://github.com/tiangolo/typer
   documentation: https://typer.tiangolo.com
+  repository: https://github.com/tiangolo/typer
 
 extra:
   feedstock-name: typer
