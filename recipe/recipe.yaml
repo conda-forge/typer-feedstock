@@ -153,6 +153,7 @@ about:
 extra:
   feedstock-name: typer
   recipe-maintainers:
+    - thewchan
     - dfornika
     - bollwyvl
     - fcollonval
