@@ -153,4 +153,5 @@ Feedstock Maintainers
 * [@bollwyvl](https://github.com/bollwyvl/)
 * [@dfornika](https://github.com/dfornika/)
 * [@fcollonval](https://github.com/fcollonval/)
+* [@thewchan](https://github.com/thewchan/)
 
