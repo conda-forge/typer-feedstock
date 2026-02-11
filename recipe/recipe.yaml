@@ -44,7 +44,6 @@ outputs:
         - annotated-doc >=0.0.2
         - python >=${{ python_min }}
         - click >=8.0.0
-        - typing_extensions >=3.7.4.3
       run_constraints:
         - typer ${{ version }}.*
         - rich >=10.11.0
