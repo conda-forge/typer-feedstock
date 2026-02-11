@@ -56,6 +56,8 @@ outputs:
           python_version:
             - ${{ python_min }}.*
             - ${{ python_check_max }}.*
+    about:
+      homepage: https://pypi.org/project/typer-slim
 
   - package:
       name: typer-cli
@@ -86,6 +88,8 @@ outputs:
         script:
           - typer --version
           - typer --help
+    about:
+      homepage: https://pypi.org/project/typer-cli
 
   - package:
       name: typer
@@ -142,6 +146,8 @@ outputs:
           imports: typer
           pip_check: true
           python_version: ${{ python_min }}.*
+    about:
+      homepage: https://pypi.org/project/typer-slim
 
 about:
   license: MIT
