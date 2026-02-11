@@ -3,50 +3,7 @@ About typer-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/typer-feedstock/blob/main/LICENSE.txt)
 
-
-About typer
------------
-
 Home: https://pypi.org/project/typer
-
-Package license: MIT
-
-Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
-
-Development: https://github.com/tiangolo/typer
-
-Documentation: https://typer.tiangolo.com/
-
-About typer-cli
----------------
-
-Home: https://pypi.org/project/typer-cli
-
-Package license: MIT
-
-Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
-
-Development: https://github.com/tiangolo/typer
-
-Documentation: https://typer.tiangolo.com/
-
-About typer-slim
-----------------
-
-Home: https://pypi.org/project/typer-slim
-
-Package license: MIT
-
-Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
-
-Development: https://github.com/tiangolo/typer
-
-Documentation: https://typer.tiangolo.com/
-
-About typer-slim-standard
--------------------------
-
-Home: https://pypi.org/project/typer-slim
 
 Package license: MIT
 
