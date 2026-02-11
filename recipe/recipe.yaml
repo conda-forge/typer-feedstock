@@ -41,6 +41,7 @@ outputs:
         - python ${{ python_min }}.*
         - python-build
       run:
+        - annotated-doc >=0.0.2
         - python >=${{ python_min }}
         - click >=8.0.0
         - typing_extensions >=3.7.4.3
@@ -146,7 +147,7 @@ about:
   license: MIT
   license_file: typer-slim/LICENSE
   summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
-  homepage: https://github.com/tiangolo/typer
+  homepage: https://pypi.org/project/typer
   documentation: https://typer.tiangolo.com
   repository: https://github.com/tiangolo/typer
 
