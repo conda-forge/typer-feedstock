@@ -4,6 +4,8 @@ schema_version: 1
 context:
   version: "0.23.0"
   python_check_max: "3.14"
+  # unclear how this will change in the future, will be hard to test
+  typer_min: "0.23.0"
 
 recipe:
   name: typer-split
@@ -40,7 +42,7 @@ outputs:
         - python-build
       run:
         - python >=${{ python_min }}
-        - typer >=0.23.0
+        - typer >=${{ typer_min }}
     tests:
       - python:
           imports: typer
@@ -66,7 +68,7 @@ outputs:
         - python-build
       run:
         - python >=${{ python_min }}
-        - typer >=0.23.0
+        - typer >=${{ typer_min }}
     tests:
       - python:
           imports: typer
