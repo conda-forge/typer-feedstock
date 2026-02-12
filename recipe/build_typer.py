@@ -35,11 +35,6 @@ def main():
         "--no-index",
         PKG_NAME
     )
-    if PKG_NAME == "typer":
-        sp_dir = Path(site.getsitepackages()[0]) / "typer"
-        print(f"removing duplicated {sp_dir}")
-        shutil.rmtree(sp_dir)
-
     return 0
 
 if __name__ == "__main__":
