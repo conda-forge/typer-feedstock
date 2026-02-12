@@ -16,8 +16,6 @@ source:
   - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
     sha256: 0e690e52b89c3ced1965485b7cfe235fe9543afe9e7b8e39b8901f4fed3a94a9
     target_directory: typer-cli
-    patches:
-      - 0000-typer-cli-no-entry-point.patch
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
     sha256: d8378833e47ada5d3d093fa20c4c63427cc4e27127f6b349a6c359463087d8cc
     target_directory: typer
@@ -41,13 +39,8 @@ outputs:
         - python ${{ python_min }}.*
         - python-build
       run:
-        - annotated-doc >=0.0.2
         - python >=${{ python_min }}
-        - click >=8.0.0
-      run_constraints:
-        - typer ${{ version }}.*
-        - rich >=10.11.0
-        - shellingham >=1.3.0
+        - typer >=0.23.0
     tests:
       - python:
           imports: typer
@@ -72,8 +65,8 @@ outputs:
         - python ${{ python_min }}.*
         - python-build
       run:
-        - ${{ pin_subpackage("typer", exact=True) }}
         - python >=${{ python_min }}
+        - typer >=0.23.0
     tests:
       - python:
           imports: typer
@@ -107,8 +100,11 @@ outputs:
         - python ${{ python_min }}.*
         - python-build
       run:
-        - ${{ pin_subpackage("typer-slim-standard", exact=True) }}
+        - annotated-doc >=0.0.2
+        - click >= 8.0.0
         - python >=${{ python_min }}
+        - rich >=10.11.0
+        - shellingham >=1.3.0
     tests:
       - python:
           imports: typer
@@ -130,23 +126,6 @@ outputs:
           - coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k "not ((multiple_values and main) or completion or invalid_score)"
           - coverage report --show-missing --skip-covered --fail-under=66
 
-  - package:
-      name: typer-slim-standard
-    build:
-      noarch: generic
-    requirements:
-      run:
-        - ${{ pin_subpackage("typer-slim", exact=True) }}
-        # see `typer-slim` for pins in `run_constrained`
-        - rich
-        - shellingham
-    tests:
-      - python:
-          imports: typer
-          pip_check: true
-          python_version: ${{ python_min }}.*
-    about:
-      homepage: https://pypi.org/project/typer-slim
 
 about:
   license: MIT
