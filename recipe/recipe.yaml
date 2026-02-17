@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.23.1"
+  version: "0.24.0"
   python_check_max: "3.14"
   # unclear how this will change in the future, will be hard to test
   typer_min: "0.23.0"
@@ -13,13 +13,13 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
-    sha256: dfe92a6317030ee2380f65bf92e540d7c77fefcc689e10d585b4925b45b5e06a
+    sha256: f0ed36127183f52ae6ced2ecb2521789995992c521a46083bfcdbb652d22ad34
     target_directory: typer-slim
   - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
-    sha256: b9f3be0612eaaf1e69f8306522001bba24290975e46b6590b67c793dac9919a7
+    sha256: ce902c5ae858d9a8df684c950cbb2e351ae6d686f397fee8c8e77cf5d99041a1
     target_directory: typer-cli
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: 2070374e4d31c83e7b61362fd859aa683576432fd5b026b060ad6b4cd3b86134
+    sha256: f9373dc4eff901350694f519f783c29b6d7a110fc0dcc11b1d7e353b85ca6504
     target_directory: typer
 
 build:
@@ -103,9 +103,9 @@ outputs:
         - python-build
       run:
         - annotated-doc >=0.0.2
-        - click >= 8.0.0
+        - click >=8.2.1
         - python >=${{ python_min }}
-        - rich >=10.11.0
+        - rich >=12.3.0
         - shellingham >=1.3.0
     tests:
       - python:
