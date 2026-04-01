@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.24.0"
+  version: "0.24.1"
   python_check_max: "3.14"
   # unclear how this will change in the future, will be hard to test
   typer_min: "0.23.0"
@@ -12,14 +12,8 @@ recipe:
   version: ${{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/t/typer-slim/typer_slim-${{ version }}.tar.gz
-    sha256: f0ed36127183f52ae6ced2ecb2521789995992c521a46083bfcdbb652d22ad34
-    target_directory: typer-slim
-  - url: https://pypi.org/packages/source/t/typer-cli/typer_cli-${{ version }}.tar.gz
-    sha256: ce902c5ae858d9a8df684c950cbb2e351ae6d686f397fee8c8e77cf5d99041a1
-    target_directory: typer-cli
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: f9373dc4eff901350694f519f783c29b6d7a110fc0dcc11b1d7e353b85ca6504
+    sha256: e39b4732d65fbdcde189ae76cf7cd48aeae72919dea1fdfc16593be016256b45
     target_directory: typer
 
 build:
@@ -27,64 +21,6 @@ build:
   noarch: python
 
 outputs:
-  - package:
-      name: typer-slim
-    build:
-      noarch: python
-      script:
-        interpreter: python
-        file: build_typer.py
-    requirements:
-      host:
-        - pdm-backend
-        - pip
-        - python ${{ python_min }}.*
-        - python-build
-      run:
-        - python >=${{ python_min }}
-        - typer >=${{ typer_min }}
-    tests:
-      - python:
-          imports: typer
-          pip_check: true
-          python_version:
-            - ${{ python_min }}.*
-            - ${{ python_check_max }}.*
-    about:
-      homepage: https://pypi.org/project/typer-slim
-
-  - package:
-      name: typer-cli
-    build:
-      noarch: python
-      script:
-        interpreter: python
-        file: build_typer.py
-    requirements:
-      host:
-        - pdm-backend
-        - pip
-        - python ${{ python_min }}.*
-        - python-build
-      run:
-        - python >=${{ python_min }}
-        - typer >=${{ typer_min }}
-    tests:
-      - python:
-          imports: typer
-          pip_check: true
-          python_version:
-            - ${{ python_min }}.*
-            - ${{ python_check_max }}.*
-      - requirements:
-          run:
-            - python ${{ python_min }}.*
-        script:
-          - typer --version
-          - typer --help
-    about:
-      homepage: https://pypi.org/project/typer-cli
-
   - package:
       name: typer
     build:
@@ -111,7 +47,9 @@ outputs:
       - python:
           imports: typer
           pip_check: true
-          python_version: ${{ python_min }}.*
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
       - files:
           source:
             - typer/tests/
@@ -130,7 +68,7 @@ outputs:
 
 about:
   license: MIT
-  license_file: typer-slim/LICENSE
+  license_file: LICENSE
   summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
   homepage: https://pypi.org/project/typer
   documentation: https://typer.tiangolo.com
