@@ -3,9 +3,6 @@ schema_version: 1
 
 context:
   version: "0.24.1"
-  python_check_max: "3.14"
-  # unclear how this will change in the future, will be hard to test
-  typer_min: "0.23.0"
 
 recipe:
   name: typer-split
@@ -25,18 +22,12 @@ outputs:
       name: typer
     build:
       noarch: python
-      script:
-        interpreter: python
-        file: build_typer.py
-      python:
-        entry_points:
-          - typer = typer.cli:main
+      script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
         - pdm-backend
         - pip
         - python ${{ python_min }}.*
-        - python-build
       run:
         - annotated-doc >=0.0.2
         - click >=8.2.1
