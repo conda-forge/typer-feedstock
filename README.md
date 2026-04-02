@@ -3,37 +3,7 @@ About typer-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/typer-feedstock/blob/main/LICENSE.txt)
 
-
-About typer
------------
-
 Home: https://pypi.org/project/typer
-
-Package license: MIT
-
-Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
-
-Development: https://github.com/tiangolo/typer
-
-Documentation: https://typer.tiangolo.com/
-
-About typer-cli
----------------
-
-Home: https://pypi.org/project/typer-cli
-
-Package license: MIT
-
-Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
-
-Development: https://github.com/tiangolo/typer
-
-Documentation: https://typer.tiangolo.com/
-
-About typer-slim
-----------------
-
-Home: https://pypi.org/project/typer-slim
 
 Package license: MIT
 
@@ -47,11 +17,10 @@ Current build status
 ====================
 
 
-<table><tr><td>All platforms:</td>
+<table><tr>
+    <td>All platforms:</td>
     <td>
-      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9586&branchName=main">
-        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/typer-feedstock?branchName=main">
-      </a>
+      <img src="https://img.shields.io/badge/noarch-disabled-lightgrey.svg" alt="noarch disabled">
     </td>
   </tr>
 </table>
@@ -62,8 +31,6 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-typer-green.svg)](https://anaconda.org/conda-forge/typer) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer.svg)](https://anaconda.org/conda-forge/typer) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer.svg)](https://anaconda.org/conda-forge/typer) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer.svg)](https://anaconda.org/conda-forge/typer) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-typer--cli-green.svg)](https://anaconda.org/conda-forge/typer-cli) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-cli.svg)](https://anaconda.org/conda-forge/typer-cli) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-cli.svg)](https://anaconda.org/conda-forge/typer-cli) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-cli.svg)](https://anaconda.org/conda-forge/typer-cli) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-typer--slim-green.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/typer-slim.svg)](https://anaconda.org/conda-forge/typer-slim) |
 
 Installing typer
 ================
@@ -75,16 +42,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `typer, typer-cli, typer-slim` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `typer` can be installed with `conda`:
 
 ```
-conda install typer typer-cli typer-slim
+conda install typer
 ```
 
 or with `mamba`:
 
 ```
-mamba install typer typer-cli typer-slim
+mamba install typer
 ```
 
 It is possible to list all of the versions of `typer` available on your platform with `conda`:
