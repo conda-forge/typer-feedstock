@@ -42,8 +42,8 @@ outputs:
             - "*"
       - files:
           source:
-            - typer/tests/
-            - typer/docs_src/
+            - tests/
+            - docs_src/
         requirements:
           run:
             - coverage
