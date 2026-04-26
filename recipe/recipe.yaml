@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.24.2"
+  version: "0.25.0"
 
 recipe:
   name: typer-split
@@ -10,7 +10,7 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: ec070dcfca1408e85ee203c6365001e818c3b7fffe686fd07ff2d68095ca0480
+    sha256: 123eaf9f19bb40fd268310e12a542c0c6b4fab9c98d9d23342a01ff95e3ce930
 
 build:
   number: 0
@@ -31,7 +31,7 @@ outputs:
         - annotated-doc >=0.0.2
         - click >=8.2.1
         - python >=${{ python_min }}
-        - rich >=12.3.0
+        - rich >=13.8.0
         - shellingham >=1.3.0
     tests:
       - python:
