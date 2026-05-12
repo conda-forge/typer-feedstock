@@ -61,7 +61,7 @@ about:
   summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
   homepage: https://pypi.org/project/typer
   documentation: https://typer.tiangolo.com
-  repository: https://github.com/tiangolo/typer
+  repository: https://github.com/fastapi/typer
 
 extra:
   feedstock-name: typer
