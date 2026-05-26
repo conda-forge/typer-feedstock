@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/typer-feedstock
 
 Home: https://pypi.org/project/typer
 
-Package license: MIT
+Package license: MIT AND BSD-3-Clause
 
 Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
 
