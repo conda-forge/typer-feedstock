@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/typer-feedstock
 
 Home: https://pypi.org/project/typer
 
-Package license: MIT
+Package license: MIT AND BSD-3-Clause
 
 Summary: Typer, build great CLIs. Easy to code. Based on Python type hints.
 
@@ -20,7 +20,9 @@ Current build status
 <table><tr>
     <td>All platforms:</td>
     <td>
-      <img src="https://img.shields.io/badge/noarch-disabled-lightgrey.svg" alt="noarch disabled">
+      <a href="https://github.com/conda-forge/typer-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/typer-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
     </td>
   </tr>
 </table>
