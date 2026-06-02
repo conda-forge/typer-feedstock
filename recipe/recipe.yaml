@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.26.4"
+  version: "0.26.5"
   python_check_max: "3.14"
   pytest_k: |-
     not (
@@ -19,7 +19,7 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-    sha256: 25b128964de66c5ea36d5ac82adc579e5e113509b17469edf9f5a4a1864ff2a9
+    sha256: 9b9b39e35c3afc9e1e51a06f21155246e457c0911279b09b35d8210ca74b935c
 
 build:
   number: 0
