@@ -11,6 +11,7 @@ context:
       or invalid_score
       or path_convert_failures
       or (types_file and file_error)
+      or binary_stderr
     )
 
 recipe:
@@ -30,7 +31,7 @@ outputs:
       name: typer
     build:
       noarch: python
-      script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+      script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --check-build-dependencies
     requirements:
       host:
         - pdm-backend
@@ -43,6 +44,11 @@ outputs:
         - rich >=13.8.0
         - shellingham >=1.3.0
     tests:
+      - package_contents:
+          strict: true
+          site_packages:
+            - typer/**
+            - typer-${{ version }}.dist-info/**
       - python:
           imports: typer
           pip_check: true
