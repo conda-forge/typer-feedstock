@@ -1,5 +1,5 @@
 bot:
-  inspection: hint-grayskull
+  inspection: hint-all
 conda_build:
   pkg_format: '2'
 conda_build_tool: rattler-build
