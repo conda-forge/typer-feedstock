@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "0.29.0"
+  version: "0.29.1"
   python_check_max: "3.15"
   cov_fail_under: "80"
   pytest_k: |-
@@ -23,7 +23,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/t/typer/typer-${{ version }}.tar.gz
-  sha256: 6871960a1603fba66af2ff751be48a6735af6480a67660afaf2fab2f7e008ed4
+  sha256: ab6eb3880bf67ce96147734717f9ec333c06f66e361f3ea947d0be43da39f242
 
 build:
   number: 0
