@@ -14,7 +14,7 @@ context:
       or path_convert_failures
       or (types_file and file_error)
       or binary_stderr
-      or (help and py310)
+      or (help and (tutorial_004 or tutorial_003))
       or tuple_wrong_arity
     )
 
@@ -34,6 +34,7 @@ build:
       - typer = typer.cli:main
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --check-build-dependencies
+    - ${{ PYTHON }} -c "import os; [os.unlink(f'tests/{p}') for p in '''${{ unlink_tests }}'''.split()]"
 
 requirements:
   host:
@@ -71,11 +72,11 @@ tests:
         - coverage >=7.13
         - pytest >=9.0.0
         - python ${{ python_min }}.*
+        - pytest-xdist
     script:
       - typer --version
       - typer --help
-      - python -c "import os; [os.unlink(f'tests/{p}') for p in '''${{ unlink_tests }}'''.split()]"
-      - coverage run --source=typer --branch -m pytest -vv --color=yes --tb=long -k "${{ pytest_k | replace("\n", " ") }}"
+      - coverage run --source=typer --branch -m pytest -vv -n${{ CPU_COUNT }} --color=yes --tb=long -k "${{ pytest_k | replace("\n", " ") }}"
       - coverage report --show-missing --skip-covered --fail-under=${{ cov_fail_under }}
 
 about:
