@@ -14,7 +14,7 @@ context:
       or path_convert_failures
       or (types_file and file_error)
       or binary_stderr
-      or (help and (tutorial_004 or tutorial_003))
+      or ((help or enum) and (tutorial004 or tutorial003))
       or tuple_wrong_arity
     )
 
